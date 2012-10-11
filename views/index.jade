@@ -30,7 +30,7 @@ block content
     a(href='/about', data-icon='info', class='ui-btn-right', data-iconpos='notext', rel='external') About
 
   div(data-role='content')
-    ul(data-role='listview', data-filter='true', data-filter-placeholder='Search', id='index-list')
+    ul(data-role='listview', id='index-list')
       li(data-icon='arrow-r', style='display:block; height: 83px')
         a(href='/personal', class='li-btn')
           div.img-container
@@ -40,7 +40,7 @@ block content
 
       each item in agenda
         - var now = new Date()
-        - var visible = now.getHours() > item.StartHours || (now.getHours() == item.StartHours && now.getMinutes() >= item.StartMinutes)
+        - var visible = now.getHours() + 2 > item.StartHours || (now.getHours() + 2 == item.StartHours && now.getMinutes() >= item.StartMinutes)
         - var target = visible ? item.Url : ''
         - var linkClass = visible ? 'li-btn' : 'li-btn opaque'
         - var icon = user.hasRated(item.Url) ? 'check' : 'arrow-r'
@@ -55,3 +55,6 @@ block content
             .ui-li-desc(style='margin-bottom:0')
               strong=item.Time
               span(style='display:block')=item.Topic
+
+  div(data-role='footer')
+    a(href='/versions') Versions
