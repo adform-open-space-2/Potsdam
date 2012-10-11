@@ -89,7 +89,7 @@ li.ui-btn div.ui-btn-inner div.ui-btn-text a.li-btn {
 
 .img-container img.top {
   z-index: 1;
-  
+
   -webkit-animation-name: fadeAnimation;
   -webkit-animation-timing-function: ease-in-out;
   -webkit-animation-iteration-count: infinite;
@@ -107,7 +107,7 @@ li.ui-btn div.ui-btn-inner div.ui-btn-text a.li-btn {
   -o-animation-iteration-count: infinite;
   -o-animation-duration: 7s;
   -o-animation-direction: alternate;
-  
+
   animation-name: fadeAnimation;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
@@ -115,3 +115,7 @@ li.ui-btn div.ui-btn-inner div.ui-btn-text a.li-btn {
   animation-direction: alternate;
 }
 
+.opaque {
+  opacity: 0.5;
+  filter:alpha(opacity=40); /* For IE8 and earlier */
+}

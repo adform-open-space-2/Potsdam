@@ -15,7 +15,8 @@ var resources = new mermin({
             'js' : {
                 'potsdam' : [
                     '/js/jquery.js',
-                    '/js/jquery.mobile.js'
+                    '/js/jquery.mobile.js',
+                    '/js/highcharts.js'
                 ]
             },
             'css' : {
@@ -28,7 +29,7 @@ var resources = new mermin({
             }
           },
   merge: true,
-  minify: true,
+  minify: false,
   name: 'resources',
   watch: true
 });

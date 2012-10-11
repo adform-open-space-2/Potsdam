@@ -20,7 +20,7 @@
       {
         "Name": "",
         "Bio": "",
-        "Img": "http://www.placehold.it/80x80"
+        "Img": "/img/talkshow.svg"
       }
     ],
     "Topic": "TALKSHOW: speakers lightning their talks",
@@ -292,5 +292,20 @@
     "Track": "",
     "Summary": "The needs to go faster to market and cut costs, dominating theindustry lately, are significantly changing the landscape of softwarequality. Many pillars of successful quality strategies in the past arejust slowing down delivery too much. To be competitive in the future,we have to switch from quality as a cost centre to quality asvalue-add, but for that we have to completely change the way wemeasure, assure and define quality. This is a talk for anyone seriousabout software delivery, regardless of the role in their process.",
     "Logo": ""
+  },
+  {
+    "Time": "All day",
+    "Topic": "Agile Tour Event",
+    "Track": "No Track",
+    "Presenters": [
+      {
+        "Name": "Agile Event in Vilnius",
+        "Bio": "Strategic event in Vilnius, you can become a sponsor by contacting Adform guys",
+        "Img": "http://agileturas.lt/assets/img/logo.png"
+      }
+    ],
+    "Summary": "The greatest event about agile stuff",
+    "Logo": "http://agileturas.lt/assets/img/logo.png",
+    "Link": ""
   }
 ]

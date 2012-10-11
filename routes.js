@@ -7,23 +7,58 @@ module.exports = function(app, models) {
       });
     });
   });
-  
+
   app.get('/about', function(req, res) {
     res.redirect('http://www.agileturas.lt/');
   });
 
+
   app.get('/dashboard', function(req, res){
     getRatingCounts(function(ratings){
-      // console.log(JSON.stringify(ratings));
+
+      var categorysData = [];
+      var seriesData = [];
+
+      for(category in ratings)
+      {
+        if(ratings.hasOwnProperty(category))
+        {
+          categorysData.push(category);
+          seriesData.push(ratings[category]);
+        }
+      }
+
       res.render('dashboard', {
-        ratings: ratings
-      })
+        categorysData : JSON.stringify(categorysData),
+        seriesData : JSON.stringify(seriesData)
+      });
+
     });
   });
 
+  app.post('/personal', function(req, res) {
+    getUser(req, res, function(user) {
+      user.name = req.body.name;
+      user.surname = req.body.surname;
+      user.company = req.body.company;
+      user.email = req.body.email;
+
+      user.recommend = req.body.recommend;
+      user.attend = req.body.attend;
+      user.registered = req.body.registered;
+
+      user.source = req.body.source;
+      user.responsibility = req.body.responsibility;
+
+      user.save();
+      res.redirect('/');
+    });
+  });
+
+
   app.get('/:presenter', function(req, res) {
     var presentation = models.agenda.filter(function(element) {
-      return element.Url === req.params.presenter.toLowerCase(); 
+      return element.Url === req.params.presenter.toLowerCase();
     })[0];
 
     if (presentation) {
@@ -46,7 +81,7 @@ module.exports = function(app, models) {
       res.redirect('/');
     });
   });
-  
+
   function getUser(req, res, callback) {
     var uid = req.cookies.uid;
     if (uid) {
@@ -67,21 +102,18 @@ module.exports = function(app, models) {
   function getRatingCounts(callback)  {    
     models.User.find(function (err, users) {
       var ratingCounts = {};
-      for(var user in users) {
-        console.log("user: " + JSON.stringify(user));
-        for(var feedback in user.feedbacks) {
+      users.forEach(function(user, index) {
+        //console.log("user: " + JSON.stringify(user));
+        user.feedbacks.forEach(function (feedback, index) {
           if (!ratingCounts[feedback.rating])
             ratingCounts[feedback.rating] = 1;
           else
             ratingCounts[feedback.rating]++;
-        }
-      }
+        });
+      });
       callback(ratingCounts);
-      console.log(JSON.stringify(ratingCounts));
+      //console.log(JSON.stringify(ratingCounts));
     });
-    // models.User.find({}, ['feedbacks'], {group:'rating'},function(err, ratings){
-    //   callback(ratings);
-    // });
   }
 
   function createUser(req, res, callback) {

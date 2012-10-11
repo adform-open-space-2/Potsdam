@@ -1,6 +1,15 @@
 module.exports = function(mongoose) {
 
   var schema = new mongoose.Schema({
+    name: String,
+    surname: String,
+    company: String,
+    email: String,
+    recommend: Number,
+    attend: Number,
+    registered: Number,
+    source: Number,
+    responsibility: Number,
     feedbacks: [{
       presenter: String,
       rating: Number,

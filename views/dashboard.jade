@@ -1,4 +1,49 @@
-ul
-	each rating in ratings
-		li=JSON.stringify(rating)
-			
+extends layout
+
+block content
+  script(type='text/javascript')
+
+    var chart;
+      $(document).ready(function() {
+        chart = new Highcharts.Chart({
+          chart: {
+            renderTo: 'chart',
+            type: 'column'
+          },
+          xAxis: {
+            categories: !{categorysData}
+          },
+          title: {
+            text: 'Ratings distribution',
+            x: -20
+          },
+          yAxis: {
+              title: {
+                  text: 'Title'
+              },
+              plotLines: [{
+                  value: 0,
+                  width: 1,
+                  color: '#808080'
+              }]
+          },
+          tooltip: {
+              formatter: function() {
+                return '<b>'+ this.series.name +'</b><br/>' + this.x +': '+ this.y;
+              }
+          },
+          legend: {
+              layout: 'vertical',
+              align: 'right',
+              verticalAlign: 'top',
+              x: -10,
+              y: 100,
+              borderWidth: 0
+          },
+          series: [{
+              name: 'ratings',
+              data: !{seriesData}
+          }]
+        });
+      });
+  div(id='chart')

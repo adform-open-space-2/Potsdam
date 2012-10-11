@@ -15,8 +15,8 @@ block content
     input(type='hidden', name='presenter', value=presentation.Url)
 
     div(data-role='fieldcontain')
-      label(for="rating") Rating:
-      select(id="rating", name='rating', data-native-menu='false')
+      label(for='rating') Rating:
+      select(id='rating', name='rating', data-native-menu='false')
         option(value='-1') Rate
         - var ratings = [{i: 5, text: '5 - Great'}, {i: 4, text: '4'}, {i: 3, text: '3'}, {i: 2, text: '2'}, {i: 1, text: '1 - Poor'}]
         each item in ratings

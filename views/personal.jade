@@ -1,0 +1,64 @@
+extends layout
+
+block content
+  div(data-role='header')
+    a(data-role='button', data-icon='arrow-l', data-direction='reverse', data-iconpos='notext', href='/') Back
+    h1 Personal Details
+
+  form(data-role='content', action='/personal', method='post', data-ajax='false')
+    div(data-role='fieldcontain')
+      label(for='name') Name:
+      textarea(id='name', name='name')
+        =user.name
+
+    div(data-role='fieldcontain')
+      label(for='surname') Surname:
+      textarea(id='surname', name='surname')
+        =user.surname
+
+    div(data-role='fieldcontain')
+      label(for='company') Company:
+      textarea(id='company', name='company')
+        =user.company
+
+    div(data-role='fieldcontain')
+      label(for='email') Email:
+      textarea(id='email', name='email')
+        =user.email
+
+    - var yesno = [{i: 0, text: 'No'}, {i: 1, text: 'Yes'}]
+    div(data-role='fieldcontain')
+      label(for='recommend') Would you recommend Agile Tour?
+      select(name='recommend', id='recommend', data-role='slider')
+        each item in yesno
+          option(value=item.i, selected=user.recommend == item.i)=item.text
+
+    div(data-role='fieldcontain')
+      label(for='attend') Would you attend Agile Tour next year?
+      select(name='attend', id='attend', data-role='slider')
+        each item in yesno
+          option(value=item.i, selected=user.attend == item.i)=item.text
+
+    div(data-role='fieldcontain')
+      label(for='registered') Would you like to get information about future events?
+      select(name='registered', id='registered', data-role='slider')
+        each item in yesno
+          option(value=item.i, selected=user.registered == item.i)=item.text
+
+    div(data-role='fieldcontain')
+      label(for='source') How did you find out about Agile Tour?
+      select(id='source', name='source', data-native-menu='false')
+        option(value='-1') Choose
+        - var sources = [{i: 1, text: 'Agile Tour website'}, {i: 2, text: 'LinkedIn'}, {i: 3, text: 'Facebook'}, {i: 4, text: 'Message board'}, {i: 5, text: 'From friends'}, {i: 6, text: 'Other'}]
+        each item in sources
+          option(value=item.i, selected=user.source == item.i)=item.text
+
+    div(data-role='fieldcontain')
+      label(for='responsibility') What are your main responsibilities?
+      select(id='responsibility', name='responsibility', data-native-menu='false')
+        option(value='-1') Choose
+        - var responsibilities = [{i: 1, text: 'Manager'}, {i: 2, text: 'Analyst'}, {i: 3, text: 'Project Manager'}, {i: 4, text: 'Architect'}, {i: 5, text: 'Product Manager'}, {i: 6, text: 'Developer'}, {i: 7, text: 'Product Owner'}, {i: 8, text: 'Tester'}, {i: 9, text: 'Scrum Master'}]
+        each item in responsibilities
+          option(value=item.i, selected=user.responsibility == item.i)=item.text
+
+    input(type='submit', value='Send', data-icon='check', data-theme='b', data-direction='reverse', data-nav-type='save', href='/')

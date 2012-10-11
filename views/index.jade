@@ -2,7 +2,7 @@ extends layout
 
 block content
   script(type='text/javascript')
-    
+
     var _adftrack = {
       pm: 94848,
       id: 1775965
@@ -31,10 +31,22 @@ block content
 
   div(data-role='content')
     ul(data-role='listview', data-filter='true', data-filter-placeholder='Search', id='index-list')
+      li(data-icon='arrow-r', style='display:block; height: 83px')
+        a(href='/personal', class='li-btn')
+          div.img-container
+            img(src='/img/personal.svg', class='ul-li-thumb', style='height:80px; width:80px')
+          h3.ui-li-heading
+            span Personal Details
+
       each item in agenda
+        - var now = new Date()
+        - var visible = now.getHours() > item.StartHours || (now.getHours() == item.StartHours && now.getMinutes() >= item.StartMinutes)
+        - var target = visible ? item.Url : ''
+        - var linkClass = visible ? 'li-btn' : 'li-btn opaque'
         - var icon = user.hasRated(item.Url) ? 'check' : 'arrow-r'
+        - icon = visible ? icon : 'false'
         li(data-icon=icon, style='display:block; height: 83px')
-          a(href=item.Url, class='li-btn')
+          a(href=target, class=linkClass)
             div.img-container
               each presenter in item.Presenters
                 img(src=presenter.Img, class='ul-li-thumb', style='height:80px; width:80px')
