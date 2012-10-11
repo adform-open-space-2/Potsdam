@@ -11,8 +11,7 @@ module.exports = function(app, models) {
   app.get('/about', function(req, res) {
     res.redirect('http://www.agileturas.lt/');
   });
-
-<<<<<<< HEAD
+  
   app.get('/personal', function(req, res) {
     getUser(req, res, function(user) {
       res.render('personal', {
