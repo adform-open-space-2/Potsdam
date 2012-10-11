@@ -3,14 +3,15 @@ extends layout
 block content
   div(data-role='header')
     a(data-role='button', data-icon='arrow-l', data-direction='reverse', data-iconpos='notext', href='/') Back
-    h1 Feedback
+    h1=presentation.Topic
 
   form(data-role='content', action='/feedback', method='post', data-ajax='false')
 
-    h3(data-nav-title)
-      img(src=presentation.Img(), width='50px', height='50px', alt=presentation.Presenter)
-      span(style='margin-left:5px')=presentation.Presenter
-    p.clear=presentation.Topic
+    each presenter in presentation.Presenters
+      h3(data-nav-title)
+        img(src=presenter.Img, width='50px', height='50px', alt=presenter.Name)
+        span(style='margin-left:5px')=presenter.Name
+      p.clear=presenter.Bio
 
     input(type='hidden', name='presenter', value=presentation.Url)
 
