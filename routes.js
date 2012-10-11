@@ -12,6 +12,7 @@ module.exports = function(app, models) {
     res.redirect('http://www.agileturas.lt/');
   });
 
+<<<<<<< HEAD
   app.get('/personal', function(req, res) {
     getUser(req, res, function(user) {
       res.render('personal', {
@@ -41,6 +42,14 @@ module.exports = function(app, models) {
 
   app.get('/versions', function(req, res) {
     res.render('versions');
+  }
+  
+  app.get('/dashboard', function(req, res){
+    getRatingCounts(function(ratings){
+      res.render('dashboard', {
+        ratings: ratings
+      })
+    });
   });
 
   app.get('/:presenter', function(req, res) {
@@ -84,6 +93,23 @@ module.exports = function(app, models) {
     else {
       createUser(req, res, callback);
     }
+  }
+
+  function getRatingCounts(callback)  {    
+    models.User.find(function (err, users) {
+      var ratingCounts = {};
+      for(var user in users) {
+        console.log("user: " + JSON.stringify(user));
+        for(var feedback in user.feedbacks) {
+          if (!ratingCounts[feedback.rating])
+            ratingCounts[feedback.rating] = 1;
+          else
+            ratingCounts[feedback.rating]++;
+        }
+      }
+      callback(ratingCounts);
+      console.log(JSON.stringify(ratingCounts));
+    });
   }
 
   function createUser(req, res, callback) {
