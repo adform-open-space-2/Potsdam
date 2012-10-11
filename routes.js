@@ -39,6 +39,10 @@ module.exports = function(app, models) {
     });
   });
 
+  app.get('/versions', function(req, res) {
+    res.render('versions');
+  });
+
   app.get('/:presenter', function(req, res) {
     var presentation = models.agenda.filter(function(element) {
       return element.Url === req.params.presenter.toLowerCase();
