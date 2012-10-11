@@ -40,7 +40,7 @@ block content
 
       each item in agenda
         - var now = new Date()
-        - var visible = now.getHours() > item.StartHours || (now.getHours() == item.StartHours && now.getMinutes() >= item.StartMinutes)
+        - var visible = now.getHours() + 2 > item.StartHours || (now.getHours() + 2 == item.StartHours && now.getMinutes() >= item.StartMinutes)
         - var target = visible ? item.Url : ''
         - var linkClass = visible ? 'li-btn' : 'li-btn opaque'
         - var icon = user.hasRated(item.Url) ? 'check' : 'arrow-r'
